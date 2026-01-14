@@ -1,0 +1,165 @@
+{
+  "ui": {
+    "title": "PkgPickerApp",
+    "tagline": "Minimal → Wayland Desktop (Hyprland/Plasma) + Packages + Services"
+  },
+  "targets": [
+    {
+      "id": "hyprland-min2desk",
+      "name": "Hyprland (Wayland) + tuigreet (recommended)",
+      "preset": "hyprland",
+      "required_packages": [
+        "sudo",
+        "git",
+        "base-devel",
+        "networkmanager",
+        "greetd",
+        "tuigreet",
+        "hyprland",
+        "xorg-xwayland",
+        "pipewire",
+        "wireplumber",
+        "pipewire-pulse",
+        "xdg-desktop-portal",
+        "xdg-desktop-portal-wlr"
+      ],
+      "recommended_packages": [
+        "kitty",
+        "waybar",
+        "wofi",
+        "mako",
+        "hyprpaper",
+        "wl-clipboard",
+        "cliphist",
+        "grim",
+        "slurp",
+        "qt6-wayland",
+        "qt5-wayland"
+      ],
+      "services": [
+        { "name": "NetworkManager", "desc": "Netzwerk" },
+        { "name": "greetd", "desc": "Greeter Daemon" }
+      ]
+    },
+    {
+      "id": "plasma-wayland",
+      "name": "Plasma (Wayland) + tuigreet (alternative)",
+      "preset": "plasma",
+      "required_packages": [
+        "sudo",
+        "git",
+        "base-devel",
+        "networkmanager",
+        "greetd",
+        "tuigreet",
+        "plasma-meta",
+        "xdg-desktop-portal",
+        "xdg-desktop-portal-kde",
+        "pipewire",
+        "wireplumber",
+        "pipewire-pulse"
+      ],
+      "recommended_packages": [
+        "konsole",
+        "qt6-wayland",
+        "qt5-wayland"
+      ],
+      "services": [
+        { "name": "NetworkManager", "desc": "Netzwerk" },
+        { "name": "greetd", "desc": "Greeter Daemon" }
+      ]
+    }
+  ],
+  "services": [
+    { "name": "NetworkManager", "desc": "Network" },
+    { "name": "greetd", "desc": "Greeter daemon (tuigreet)" },
+    { "name": "bluetooth", "desc": "Bluetooth (bluez)" },
+    { "name": "cups", "desc": "Printing" },
+    { "name": "avahi-daemon", "desc": "mDNS/Bonjour" }
+  ],
+  "conflicts": [
+    {
+      "name": "Display manager / greeter",
+      "group": ["greetd", "sddm", "gdm", "lightdm"],
+      "mode": "at_most_one"
+    },
+    {
+      "name": "Terminal",
+      "group": ["kitty", "alacritty", "foot", "wezterm"],
+      "mode": "at_most_one"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Core Essentials",
+      "items": [
+        { "name": "sudo", "source": "repo", "reason": "Adminrechte" },
+        { "name": "git", "source": "repo", "reason": "AUR / configs" },
+        { "name": "base-devel", "source": "repo", "reason": "AUR build tools" },
+        { "name": "networkmanager", "source": "repo", "reason": "Netzwerk" },
+        { "name": "openssh", "source": "repo", "reason": "Remote login" },
+        { "name": "pacman-contrib", "source": "repo", "reason": "paccache etc." },
+        { "name": "expac", "source": "repo", "reason": "fast pkg info (optional)" },
+        { "name": "pciutils", "source": "repo", "reason": "lspci hardware scan" }
+      ]
+    },
+    {
+      "name": "Wayland Desktop Base",
+      "items": [
+        { "name": "greetd", "source": "repo", "reason": "Greeter daemon" },
+        { "name": "tuigreet", "source": "repo", "reason": "TUI greeter" },
+        { "name": "xdg-desktop-portal", "source": "repo", "reason": "Desktop portal" },
+        { "name": "xdg-desktop-portal-wlr", "source": "repo", "reason": "wlroots portal" },
+        { "name": "qt6-wayland", "source": "repo", "reason": "Qt Wayland" },
+        { "name": "qt5-wayland", "source": "repo", "reason": "Qt5 Wayland" },
+        { "name": "pipewire", "source": "repo", "reason": "Audio/video" },
+        { "name": "wireplumber", "source": "repo", "reason": "PipeWire session manager" },
+        { "name": "pipewire-pulse", "source": "repo", "reason": "Pulse compatibility" }
+      ]
+    },
+    {
+      "name": "Hyprland Stack (recommended)",
+      "items": [
+        { "name": "hyprland", "source": "repo", "reason": "Wayland compositor" },
+        { "name": "xorg-xwayland", "source": "repo", "reason": "X11 apps on Wayland" },
+        { "name": "kitty", "source": "repo", "reason": "Terminal" },
+        { "name": "waybar", "source": "repo", "reason": "Bar" },
+        { "name": "wofi", "source": "repo", "reason": "Launcher" },
+        { "name": "mako", "source": "repo", "reason": "Notifications" },
+        { "name": "hyprpaper", "source": "repo", "reason": "Wallpaper" },
+        { "name": "wl-clipboard", "source": "repo", "reason": "Clipboard" },
+        { "name": "cliphist", "source": "repo", "reason": "Clipboard history" },
+        { "name": "grim", "source": "repo", "reason": "Screenshots" },
+        { "name": "slurp", "source": "repo", "reason": "Region select" }
+      ]
+    },
+    {
+      "name": "DEs (Wayland-first)",
+      "items": [
+        { "name": "plasma-meta", "source": "repo", "reason": "KDE Plasma desktop" },
+        { "name": "xdg-desktop-portal-kde", "source": "repo", "reason": "KDE portal" }
+      ]
+    },
+    {
+      "name": "Browsers",
+      "items": [
+        { "name": "firefox", "source": "repo", "reason": "Wayland OK" },
+        { "name": "chromium", "source": "repo", "reason": "Wayland OK" }
+      ]
+    },
+    {
+      "name": "Office",
+      "items": [
+        { "name": "libreoffice-fresh", "source": "repo", "reason": "Office suite" }
+      ]
+    },
+    {
+      "name": "Communication",
+      "items": [
+        { "name": "telegram-desktop", "source": "repo", "reason": "Messenger" },
+        { "name": "signal-desktop", "source": "aur", "reason": "Messenger (AUR)" }
+      ]
+    }
+  ]
+}
+
